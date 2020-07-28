@@ -1,7 +1,8 @@
 # create-webp-webpack-plugin
-Create `webp` image
+[简体中文文档](./README_zh-CN.md)
+将项目图片生成对应的webp格式  
 
-## Install
+## 安装
 
 ```sh
 npm i -D create-webp-webpack-plugin
@@ -9,19 +10,19 @@ npm i -D create-webp-webpack-plugin
 yarn add -D create-webp-webpack-plugin
 ```
 
-## Options
+## 选项
 
 #### match
 Type: `regexp`
 Default: `/\.(png|gif|svg)$/`
 
-Match regexp that help plugin match the images need to transform to webp
+匹配需要生成webp的图片
 
 #### webp
 Type: `object`
 Default: `{ lossless: true }`  
 
-The options webp refer to [sharp webp options](https://sharp.pixelplumbing.com/api-output#webp)
+该选项同 [sharp webp options](https://sharp.pixelplumbing.com/api-output#webp)
 
 
 ## License

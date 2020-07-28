@@ -1,0 +1,22 @@
+{
+  "name": "create-webp-webpack-plugin",
+  "version": "1.0.0",
+  "description": "将项目图片生成对应的webp格式",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lilililee/create-webp-webpack-plugin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lilililee/create-webp-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/lilililee/create-webp-webpack-plugin#readme",
+  "dependencies": {
+    "sharp": "^0.25.4"
+  }
+}
