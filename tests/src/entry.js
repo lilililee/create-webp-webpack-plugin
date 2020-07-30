@@ -1,0 +1,10 @@
+require('./assets/pic.jpg')
+require('./assets/pic.jpeg')
+require('./assets/pic.svg')
+require('./assets/pic.png')
+require('./assets/pic.gif')
+
+require('./assets-from-project/pic.jpg')
+require('./assets-from-project/pic.png')
+require('./assets-from-project/pic.gif')
+require('./assets-from-project/pic2.png')

@@ -3,56 +3,41 @@ const sharp = require('sharp')
 
 const defaultOptions = {
   // match: /\.(png|jpe?g)$/,
-  match: /\.(png|gif|svg)$/, // 对于压缩后的jpg转成无损webp体积会更大
-  // quality: 80,
-  // http://sharp.dimens.io/en/stable/api-output/#webp
+  match: /\.(png)$/, // 对于压缩后的jpg转成无损webp体积会更大, 但是压缩后的png转成无损webp还能减少15%体积
   webp: {
-    // quality: 75
-    lossless: true
-  }
-  // limit: 0,
-  // inject: false,
-  // imgSrc: 'data-src',
-  // minify: true,
-  // injectCode: '',
-  // checkStrict: false,
-  // format: '[name].[ext].webp'
+    // https://sharp.pixelplumbing.com/api-output#webp
+    // quality: 85
+    lossless: true,
+  },
 }
 
 module.exports = class CreateWebpWebpackPlugin {
-  constructor (options) {
+  constructor(options) {
     this.options = Object.assign({}, defaultOptions, options)
   }
 
-  apply (compiler) {
+  apply(compiler) {
     const match = this.options.match
-    compiler.hooks.emit.tapAsync(
-      'WebpWebpackPlugin',
-      async (compilation, callback) => {
-        for (const filename in compilation.assets) {
-          if (match.test(filename)) {
-            const webp = await this._toWebp(
-              compilation.assets[filename].source()
-            )
-            compilation.assets[`${filename}.webp`] = {
-              source: function () {
-                return webp
-              },
-              size: function () {
-                return webp.length
-              }
-            }
+    compiler.hooks.emit.tapAsync('WebpWebpackPlugin', async (compilation, callback) => {
+      for (const filename in compilation.assets) {
+        if (match.test(filename)) {
+          const webp = await this._toWebp(compilation.assets[filename].source())
+          compilation.assets[`${filename}.webp`] = {
+            source: function () {
+              return webp
+            },
+            size: function () {
+              return webp.length
+            },
           }
         }
-
-        callback()
       }
-    )
+
+      callback()
+    })
   }
 
-  async _toWebp (input) {
-    return sharp(input)
-      .webp(this.options.webp)
-      .toBuffer()
+  async _toWebp(input) {
+    return sharp(input).webp(this.options.webp).toBuffer()
   }
 }

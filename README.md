@@ -1,7 +1,9 @@
 # create-webp-webpack-plugin
-Create `webp` image
 
-## Install
+[简体中文文档](./README_zh-CN.md)
+将项目图片生成对应的 webp 格式
+
+## 安装
 
 ```sh
 npm i -D create-webp-webpack-plugin
@@ -9,20 +11,45 @@ npm i -D create-webp-webpack-plugin
 yarn add -D create-webp-webpack-plugin
 ```
 
-## Options
+## 选项
 
 #### match
+
 Type: `regexp`
 Default: `/\.(png|gif|svg)$/`
 
-Match regexp that help plugin match the images need to transform to webp
+匹配需要生成 webp 的图片
 
 #### webp
+
 Type: `object`
-Default: `{ lossless: true }`  
+Default: `{ lossless: true }`
 
-The options webp refer to [sharp webp options](https://sharp.pixelplumbing.com/api-output#webp)
+该选项同 [sharp webp options](https://sharp.pixelplumbing.com/api-output#webp)
 
+## 各种格式使用转化成 webp 说明
+
+| 序号  | 压缩模式 | webp 设置 | **jpg** | jpeg | **png**  | gif  | svg  | **jpg2** | **png2** | gif2 | 图片质量                              |
+| ----- | -------- | --------- | ------- | ---- | -------- | ---- | ---- | -------- | -------- | ---- | ------------------------------------- |
+| 1     | 未处理   | 未处理    | 13.3    | 4.78 | **74.3** | 204  | 1.97 | **188**  | 60.1     | 169  | ----                                  |
+| **2** | 压缩     | 未处理    | 12.3    | 5.94 | **52.2** | 204  | 1.26 | **96.2** | 18.5     | 168  | 优秀(效果等同原图，推荐)              |
+| 3     | 压缩     | 无损      | 61.2    | 31.5 | **45.3** | 78.4 | 2.29 | 469      | 15.7     | 4.73 | 优秀(效果等同原图，推荐)              |
+| 4     | 压缩     | 80        | 8.38    | 5.39 | 6.68     | 18.3 | 2.76 | 54.2     | 13.8     | 3.00 | 一般(体积等同压缩 webp80，但质量要差) |
+| 5     | 无压缩   | 无损      | 61.4    | 31.2 | 41.5     | 78.4 | 2.29 | 430      | 37.8     | 4.73 | 优秀(效果等同原图)                    |
+| 6     | 无压缩   | 90        | 14.1    | 8.01 | 11.6     | 39.2 | 2.94 | 84.8     | 18.0     | 4.14 | 优秀                                  |
+| **7** | 无压缩   | 85        | 13.3    | 6.40 | **8.50** | 26.3 | 2.83 | **69.2** | 16.0     | 3.47 | 良好                                  |
+| 8     | 无压缩   | 80        | 8.38    | 5.36 | 6.55     | 18.3 | 2.76 | 57.8     | 14.6     | 3.00 | 一般                                  |
+| 9     | 无压缩   | 75        | 6.77    | 4.62 | 5.18     | 13.7 | 2.70 | 49.5     | 13.3     | 2.59 | 较差                                  |
+
+#### 分析
+
+- 对于压缩过的 jpg，jpeg 再使用 webp 无损转化会增大 2 倍以上体积，参考序号 `3，5`
+- 压缩后再转成 webp，jpg 不适合转成 webp，png 可再减小 15% 左右的体积
+
+#### 总结
+
+- 在不使用 webp 时，推荐使用 image-webpack-loader 压缩，参考序号 `2`
+- 在使用 webp 时，推荐 image-webpack-loader 压缩同时将 png 无损转成 webp，质量和序号 `2` 的效果一致
 
 ## License
 

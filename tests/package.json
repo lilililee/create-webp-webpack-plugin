@@ -1,0 +1,27 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:yes-no": "webpack --type yes-no",
+    "build:yes-lossless": "webpack --type yes-lossless",
+    "build:yes-80": "webpack --type yes-80",
+    "build:no-lossless": "webpack --type no-lossless",
+    "build:no-90": "webpack --type no-90",
+    "build:no-85": "webpack --type no-85",
+    "build:no-80": "webpack --type no-80",
+    "build:no-75": "webpack --type no-75",
+    "build": "yarn build:yes-no && yarn build:yes-lossless && yarn build:yes-80 && yarn build:no-lossless && yarn build:no-90 && yarn build:no-85 && yarn build:no-80 && yarn build:no-75",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "file-loader": "^6.0.0",
+    "image-webpack-loader": "^6.0.0",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
