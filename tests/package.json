@@ -6,6 +6,7 @@
   "scripts": {
     "build:yes-no": "webpack --type yes-no",
     "build:yes-lossless": "webpack --type yes-lossless",
+    "build:yes-90": "webpack --type yes-90",
     "build:yes-80": "webpack --type yes-80",
     "build:no-lossless": "webpack --type no-lossless",
     "build:no-90": "webpack --type no-90",
