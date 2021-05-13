@@ -1,6 +1,5 @@
 # create-webp-webpack-plugin
 
-[简体中文文档](./README_zh-CN.md)
 将项目图片生成对应的 webp 格式
 
 ## 安装
